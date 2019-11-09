@@ -59,8 +59,9 @@ class Map extends Component {
           Authorization: "Bearer 267190c0-c1fd-4e0b-9d89-242c730a552c"
         }
       });
-      console.log(response)
-      this.setState({ markers: response.data });
+      console.log(response.data.length)
+      var items = response.data.slice(0, 11);
+      this.setState({ markers: items });
     } catch (err) {
       console.log(err);
     }
@@ -84,6 +85,10 @@ class Map extends Component {
       <Fragment>
         <NavBar />
         Radares instalados em são paulo
+        {markers.map((aplicativo, index) => (
+
+          console.log(aplicativo.latitude)
+        ))}
         <MapGL
           width={width}
           height={height * 0.7}
@@ -93,9 +98,11 @@ class Map extends Component {
           onViewportChange={viewport => this.setState({ viewport })}
           onViewStateChange={this.updatePropertiesLocalization.bind(this)}
         >
-          {markers.map((aplicativo) => (
-            <Marker latitude={aplicativo.latitude} longitude={aplicativo.longitude} offsetLeft={-20} offsetTop={-10} >
-              <img src={Pin} alt="logo" height={30} />
+
+          {markers.map((aplicativo, index) => (
+
+            <Marker key={index} latitude={parseFloat(aplicativo.latitude)} longitude={parseFloat(aplicativo.longitude)} offsetLeft={-20} offsetTop={-10} >
+              <img src={Pin} alt="logo" height={50} />
             </Marker>
           ))}
 
