@@ -4,15 +4,14 @@ import { withRouter } from "react-router-dom";
 import MapGL from "react-map-gl";
 import { Marker } from "react-map-gl";
 import PropTypes from "prop-types";
-import debounce from "lodash/debounce";
-import Pin from "../../assets/pin.svg";
+
 
 import api from "../../services/api";
 import { logout } from "../../services/auth";
 
 
 
-import { Container } from "./styles";
+import { Container, Pin } from "./styles";
 import NavBar from "../NavBar/navbar";
 
 const TOKEN =
@@ -24,13 +23,7 @@ class Map extends Component {
     containerHeight: PropTypes.number.isRequired
   };
 
-  constructor() {
-    super();
-    this.updatePropertiesLocalization = debounce(
-      this.updatePropertiesLocalization,
-      500
-    );
-  }
+
 
   state = {
     viewport: {
@@ -48,10 +41,6 @@ class Map extends Component {
     this.loadProperties();
   }
 
-  updatePropertiesLocalization() {
-    this.loadProperties();
-  }
-
   loadProperties = async () => {
     try {
       const response = await api.get("http://192.168.1.207:8081/api/radares/todos", {
@@ -60,8 +49,7 @@ class Map extends Component {
         }
       });
       console.log(response.data.length)
-      var items = response.data.slice(0, 11);
-      this.setState({ markers: items });
+      this.setState({ markers: response.data });
     } catch (err) {
       console.log(err);
     }
@@ -84,9 +72,10 @@ class Map extends Component {
     return (
       <Fragment>
         <NavBar />
-        Radares instalados em são paulo
+        <h2 className="padding-right: 7">
+          Radares instalados em são paulo
+        </h2>
         {markers.map((aplicativo, index) => (
-
           console.log(aplicativo.latitude)
         ))}
         <MapGL
@@ -96,13 +85,11 @@ class Map extends Component {
           mapStyle="mapbox://styles/mapbox/dark-v9"
           mapboxApiAccessToken={TOKEN}
           onViewportChange={viewport => this.setState({ viewport })}
-          onViewStateChange={this.updatePropertiesLocalization.bind(this)}
         >
 
           {markers.map((aplicativo, index) => (
-
-            <Marker key={index} latitude={parseFloat(aplicativo.latitude)} longitude={parseFloat(aplicativo.longitude)} offsetLeft={-20} offsetTop={-10} >
-              <img src={Pin} alt="logo" height={50} />
+            <Marker key={index} latitude={aplicativo.latitude} longitude={aplicativo.longitude} offsetLeft={-20} offsetTop={-10} >
+              <Pin />
             </Marker>
           ))}
 

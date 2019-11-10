@@ -59,7 +59,7 @@ class SignIn extends Component {
     return (
       <Container>
         <Form onSubmit={this.handleSignIn}>
-          <img src={Logo} alt="Airbnb logo" />
+          <img src={Logo} alt="logo" />
           {this.state.error && <p>{this.state.error}</p>}
           <input
             type="email"

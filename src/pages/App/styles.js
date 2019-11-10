@@ -16,6 +16,14 @@ export const ButtonContainer = styled.div`
   flex-direction: column;
 `;
 
+export const Pin = styled.div`
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+`;
+
 export const PointReference = styled.div`
   position: absolute;
   top: 0;
