@@ -51,7 +51,7 @@ class Map extends Component {
 
   getLotes = async () => {
     try {
-      const response = await api.get("http://192.168.1.207:8081/api/radares/concessao", {
+      const response = await api.get("http://localhost:8081/api/radares/concessao", {
         headers: {
           Authorization: "Bearer 267190c0-c1fd-4e0b-9d89-242c730a552c"
         }
@@ -72,7 +72,7 @@ class Map extends Component {
 
     })
     try {
-      const response = await api.get("http://192.168.1.207:8081/api/radares/localizacoes/mapa/concessoes?lotes=" + array, {
+      const response = await api.get("http://localhost:8081/api/radares/localizacoes/mapa/concessoes?lotes=" + array, {
         headers: {
           Authorization: "Bearer 267190c0-c1fd-4e0b-9d89-242c730a552c"
         }
@@ -86,7 +86,7 @@ class Map extends Component {
 
   loadProperties = async () => {
     try {
-      const response = await api.get("http://192.168.1.207:8081/api/radares/localizacoes/mapa", {
+      const response = await api.get("http://localhost:8081/api/radares/localizacoes/mapa", {
         headers: {
           Authorization: "Bearer 267190c0-c1fd-4e0b-9d89-242c730a552c"
         }

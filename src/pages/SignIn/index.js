@@ -35,7 +35,7 @@ class SignIn extends Component {
       this.setState({ error: "Preencha e-mail e senha para continuar!" });
     } else {
       try {
-        const response = await axios.post("http://192.168.1.207:8080/oauth/token", createLoginFormData(email, password), {
+        const response = await axios.post("http://localhost:8080/oauth/token", createLoginFormData(email, password), {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
           }
