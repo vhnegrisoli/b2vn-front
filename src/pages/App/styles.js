@@ -17,9 +17,9 @@ export const ButtonContainer = styled.div`
 `;
 
 export const Pin = styled.div`
-  height: 25px;
-  width: 25px;
-  background-color: #bbb;
+  height: 7px;
+  width: 7px;
+  background-color: red;
   border-radius: 50%;
   display: inline-block;
 `;

@@ -29,7 +29,7 @@ class Map extends Component {
     viewport: {
       latitude: -23.5489,
       longitude: -46.6388,
-      zoom: 12.8,
+      zoom: 11,
       bearing: 0,
       pitch: 0
     },
@@ -43,12 +43,12 @@ class Map extends Component {
 
   loadProperties = async () => {
     try {
-      const response = await api.get("http://192.168.1.207:8081/api/radares/todos", {
+      const response = await api.get("http://192.168.1.207:8081/api/radares/localizoes/mapa", {
         headers: {
           Authorization: "Bearer 267190c0-c1fd-4e0b-9d89-242c730a552c"
         }
       });
-      console.log(response.data.length)
+
       this.setState({ markers: response.data });
     } catch (err) {
       console.log(err);
@@ -72,25 +72,20 @@ class Map extends Component {
     return (
       <Fragment>
         <NavBar />
-        <h2 className="padding-right: 7">
-          Radares instalados em são paulo
-        </h2>
-        {markers.map((aplicativo, index) => (
-          console.log(aplicativo.latitude)
-        ))}
         <MapGL
           width={width}
           height={height * 0.7}
           {...this.state.viewport}
           mapStyle="mapbox://styles/mapbox/dark-v9"
           mapboxApiAccessToken={TOKEN}
+          minZoom={10}
           onViewportChange={viewport => this.setState({ viewport })}
         >
 
-          {markers.map((aplicativo, index) => (
-            <Marker key={index} latitude={aplicativo.latitude} longitude={aplicativo.longitude} offsetLeft={-20} offsetTop={-10} >
+          {markers.map((marcador, index) => (
+            marcador.latitude !== 0.0 ? <Marker key={index} latitude={marcador.latitude} longitude={marcador.longitude} offsetLeft={-20} offsetTop={-10} >
               <Pin />
-            </Marker>
+            </Marker> : <div></div>
           ))}
 
         </MapGL>
