@@ -166,7 +166,7 @@ class Map extends Component {
 
         <MapGL
           width={width}
-          height={height}
+          height={height * 0.75}
           {...this.state.viewport}
           mapStyle="mapbox://styles/mapbox/dark-v9"
           mapboxApiAccessToken={TOKEN}
