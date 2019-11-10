@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import MapGL from "react-map-gl";
 import { Marker } from "react-map-gl";
 import PropTypes from "prop-types";
+import Swal from 'sweetalert2'
 
 
 import api from "../../services/api";
@@ -43,7 +44,7 @@ class Map extends Component {
 
   loadProperties = async () => {
     try {
-      const response = await api.get("http://192.168.1.207:8081/api/radares/localizoes/mapa", {
+      const response = await api.get("http://192.168.1.207:8081/api/radares/localizacoes/mapa", {
         headers: {
           Authorization: "Bearer 267190c0-c1fd-4e0b-9d89-242c730a552c"
         }
@@ -59,6 +60,19 @@ class Map extends Component {
     logout();
     this.props.history.push("/");
   };
+
+
+  changeColor(velocidade) {
+    Swal.fire({
+      title: '<strong>Radares</strong>',
+      icon: 'info',
+      html:
+        'Velocidade: <b>' + velocidade + '</b>, ',
+
+
+    })
+  }
+
 
 
 
@@ -81,10 +95,9 @@ class Map extends Component {
           minZoom={10}
           onViewportChange={viewport => this.setState({ viewport })}
         >
-
           {markers.map((marcador, index) => (
             marcador.latitude !== 0.0 ? <Marker key={index} latitude={marcador.latitude} longitude={marcador.longitude} offsetLeft={-20} offsetTop={-10} >
-              <Pin />
+              <Pin onClick={() => this.changeColor(marcador.velocidade)} />
             </Marker> : <div></div>
           ))}
 

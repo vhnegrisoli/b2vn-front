@@ -8097,6 +8097,11 @@ sw-toolbox@^3.4.0:
     path-to-regexp "^1.0.1"
     serviceworker-cache-polyfill "^4.0.0"
 
+sweetalert2@^9.2.0:
+  version "9.2.0"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-9.2.0.tgz#357c29c1df480343221db8bb421eedf8a4b4d885"
+  integrity sha512-57vw5Hk6Mo9F2kXrkQ/KOacCSRaFYwI1LqVwKWtO9ca5Fa9avg3P6BzcHuwDrmIWTfkjwIPfgP+O9Y9wiYEtAg==
+
 symbol-tree@^3.2.1:
   version "3.2.4"
   resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.4.tgz#430637d248ba77e078883951fb9aa0eed7c63fa2"

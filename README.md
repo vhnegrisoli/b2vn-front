@@ -26,14 +26,14 @@ Você poderá executar o seguinte comando após o procedimento de instalação a
 #### Instalação do Node no Windows
 
 Vá para [official Node.js website](http://nodejs.org/) e baixe o instalador.
-Além disso, você precisará ter o `git` e o `npm` disponíveis no seu PATH, `npm`.
+Além disso, você precisará ter o `git` e o `npm` disponíveis no seu PATH.
 
 ---
 
 ## Instalação
 
     $ git clone https://github.com/Noninus/b2vn-front.git
-    $ cd PROJECT
+    $ cd b2vn-front
     $ npm install
 
 
