@@ -16,13 +16,41 @@ export const ButtonContainer = styled.div`
   flex-direction: column;
 `;
 
-export const Pin = styled.div`
+
+
+export const PinYellow = styled.div`
+  height: 7px;
+  width: 7px;
+  background-color: yellow;
+  border-radius: 50%;
+  display: inline-block;
+`;
+
+export const PinRed = styled.div`
   height: 7px;
   width: 7px;
   background-color: red;
   border-radius: 50%;
   display: inline-block;
 `;
+
+export const PinBlue = styled.div`
+  height: 7px;
+  width: 7px;
+  background-color: blue;
+  border-radius: 50%;
+  display: inline-block;
+`;
+
+export const PinGreen = styled.div`
+  height: 7px;
+  width: 7px;
+  background-color: green;
+  border-radius: 50%;
+  display: inline-block;
+`;
+
+
 
 export const PointReference = styled.div`
   position: absolute;

@@ -5,6 +5,7 @@ import MapGL from "react-map-gl";
 import { Marker } from "react-map-gl";
 import PropTypes from "prop-types";
 import Swal from 'sweetalert2'
+import CheckBox from './checkbox'
 
 
 import api from "../../services/api";
@@ -12,7 +13,7 @@ import { logout } from "../../services/auth";
 
 
 
-import { Container, Pin } from "./styles";
+import { Container, PinRed, PinYellow, PinBlue, PinGreen } from "./styles";
 import NavBar from "../NavBar/navbar";
 
 const TOKEN =
@@ -35,12 +36,53 @@ class Map extends Component {
       pitch: 0
     },
     markers: [],
+    todosLotes: [
+      { id: 1, value: "1", isChecked: false },
+      { id: 2, value: "2", isChecked: false },
+      { id: 3, value: "3", isChecked: false },
+      { id: 4, value: "4", isChecked: false }
+    ],
     addActivate: false
   };
 
   componentDidMount() {
     this.loadProperties();
   }
+
+  getLotes = async () => {
+    try {
+      const response = await api.get("http://192.168.1.207:8081/api/radares/concessao", {
+        headers: {
+          Authorization: "Bearer 267190c0-c1fd-4e0b-9d89-242c730a552c"
+        }
+      });
+
+      this.setState({ lotes: response.data });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  getRadaresByLote = async () => {
+    let array = []
+    this.state.todosLotes.forEach(lote => {
+      if (lote.isChecked === true) {
+        array.push(lote.value)
+      }
+
+    })
+    try {
+      const response = await api.get("http://192.168.1.207:8081/api/radares/localizacoes/mapa/concessoes?lotes=" + array, {
+        headers: {
+          Authorization: "Bearer 267190c0-c1fd-4e0b-9d89-242c730a552c"
+        }
+      });
+
+      this.setState({ markers: response.data });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   loadProperties = async () => {
     try {
@@ -62,16 +104,43 @@ class Map extends Component {
   };
 
 
-  changeColor(velocidade) {
+  showMessage(radar) {
     Swal.fire({
       title: '<strong>Radares</strong>',
       icon: 'info',
       html:
-        'Velocidade: <b>' + velocidade + '</b>, ',
+        'Velocidade: <b>' + radar.velocidade + '</b> - \n Lote: <b>' + radar.lote + '</b>, ',
 
 
     })
   }
+
+  handleCheckChieldElement = (event) => {
+    let todosLotes = this.state.todosLotes
+    todosLotes.forEach(lote => {
+      if (lote.value === event.target.value) {
+        lote.isChecked = event.target.checked
+      }
+    })
+
+    this.setState({ todosLotes: todosLotes })
+
+    let array = []
+    this.state.todosLotes.forEach(lote => {
+      if (lote.isChecked === true) {
+        array.push(lote.value)
+      }
+
+    })
+    if (array.length === 0) {
+      this.loadProperties();
+    } else {
+      this.getRadaresByLote();
+
+    }
+  }
+
+
 
 
 
@@ -85,10 +154,19 @@ class Map extends Component {
     const { markers } = this.state;
     return (
       <Fragment>
+
         <NavBar />
+        <div>
+          {
+            this.state.todosLotes.map((lote) => {
+              return (<CheckBox handleCheckChieldElement={this.handleCheckChieldElement}  {...lote} />)
+            })
+          }
+        </div>
+
         <MapGL
           width={width}
-          height={height * 0.7}
+          height={height}
           {...this.state.viewport}
           mapStyle="mapbox://styles/mapbox/dark-v9"
           mapboxApiAccessToken={TOKEN}
@@ -97,13 +175,17 @@ class Map extends Component {
         >
           {markers.map((marcador, index) => (
             marcador.latitude !== 0.0 ? <Marker key={index} latitude={marcador.latitude} longitude={marcador.longitude} offsetLeft={-20} offsetTop={-10} >
-              <Pin onClick={() => this.changeColor(marcador.velocidade)} />
+              {marcador.lote === 1 ? <PinRed onClick={() => this.showMessage(marcador)} /> : marcador.lote === 2 ? <PinYellow onClick={() => this.showMessage(marcador)}
+              /> : marcador.lote === 3 ? <PinGreen onClick={() => this.showMessage(marcador)} /> : <PinBlue onClick={() => this.showMessage(marcador)}
+              />}
             </Marker> : <div></div>
           ))}
 
         </MapGL>
 
+
       </Fragment>
+
     );
   }
 }
