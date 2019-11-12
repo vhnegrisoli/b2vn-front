@@ -189,10 +189,10 @@ class Map extends Component {
 }
 
 const DimensionedMap = withRouter(Dimensions()(Map));
-const App = () => (
+const Home = () => (
   <Container>
     <DimensionedMap />
   </Container>
 );
 
-export default App;
+export default Home;
