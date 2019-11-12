@@ -6,8 +6,6 @@ import { Marker } from "react-map-gl";
 import PropTypes from "prop-types";
 import Swal from 'sweetalert2'
 import CheckBox from './checkbox'
-
-
 import api from "../../services/api";
 import { logout } from "../../services/auth";
 
@@ -51,9 +49,9 @@ class Map extends Component {
 
   getLotes = async () => {
     try {
-      const response = await api.get("http://localhost:8081/api/radares/concessao", {
+      const response = await api.get("http://192.168.1.207:8081/api/radares/concessao", {
         headers: {
-          Authorization: "Bearer 267190c0-c1fd-4e0b-9d89-242c730a552c"
+          Authorization: "Bearer 54ec92d1-2b03-4c87-af21-11821410c423"
         }
       });
 
@@ -72,9 +70,9 @@ class Map extends Component {
 
     })
     try {
-      const response = await api.get("http://localhost:8081/api/radares/localizacoes/mapa/concessoes?lotes=" + array, {
+      const response = await api.get("http://192.168.1.207:8081/api/radares/localizacoes/mapa/concessoes?lotes=" + array, {
         headers: {
-          Authorization: "Bearer 267190c0-c1fd-4e0b-9d89-242c730a552c"
+          Authorization: "Bearer 54ec92d1-2b03-4c87-af21-11821410c423"
         }
       });
 
@@ -86,9 +84,9 @@ class Map extends Component {
 
   loadProperties = async () => {
     try {
-      const response = await api.get("http://localhost:8081/api/radares/localizacoes/mapa", {
+      const response = await api.get("http://192.168.1.207:8081/api/radares/localizacoes/mapa", {
         headers: {
-          Authorization: "Bearer 267190c0-c1fd-4e0b-9d89-242c730a552c"
+          Authorization: "Bearer 54ec92d1-2b03-4c87-af21-11821410c423"
         }
       });
 
