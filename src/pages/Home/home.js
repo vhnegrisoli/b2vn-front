@@ -5,7 +5,7 @@ import MapGL from "react-map-gl";
 import { Marker } from "react-map-gl";
 import PropTypes from "prop-types";
 import Swal from 'sweetalert2'
-import CheckBox from './checkbox'
+import CheckBox from './components/checkbox'
 import api from "../../services/api";
 import { logout } from "../../services/auth";
 
