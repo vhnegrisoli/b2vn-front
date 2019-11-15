@@ -10,7 +10,7 @@ injectGlobal`
   outline: 0;
 }
 body, html {
-  background: #eee;
+  background: #2b8e91;
   font-family: 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;

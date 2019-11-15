@@ -9,24 +9,25 @@ import { Form, Container } from "./styles";
 
 class SignUp extends Component {
   state = {
-    username: "",
+    nome: "",
     email: "",
-    password: "",
-    error: ""
+    senha: "",
+    error: "",
+    cpf: ""
   };
 
   handleSignUp = async e => {
     e.preventDefault();
-    const { username, email, password } = this.state;
-    if (!username || !email || !password) {
+    const { nome, email, senha, cpf } = this.state;
+    if (!nome || !email || !senha || !cpf) {
       this.setState({ error: "Preencha todos os dados para se cadastrar" });
     } else {
       try {
-        await api.post("/users", { username, email, password });
+        await api.post("api/usuarios/novo", { nome, email, senha, cpf });
         this.props.history.push("/");
       } catch (err) {
         console.log(err);
-        this.setState({ error: "Ocorreu um erro ao registrar sua conta. T.T" });
+        this.setState({ error: "Ocorreu um erro ao registrar sua conta" });
       }
     }
   };
@@ -40,7 +41,12 @@ class SignUp extends Component {
           <input
             type="text"
             placeholder="Nome de usuário"
-            onChange={e => this.setState({ username: e.target.value })}
+            onChange={e => this.setState({ nome: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="CPF"
+            onChange={e => this.setState({ cpf: e.target.value })}
           />
           <input
             type="email"
@@ -50,9 +56,9 @@ class SignUp extends Component {
           <input
             type="password"
             placeholder="Senha"
-            onChange={e => this.setState({ password: e.target.value })}
+            onChange={e => this.setState({ senha: e.target.value })}
           />
-          <button type="submit">Cadastrar grátis</button>
+          <button type="submit">Me Cadastrar</button>
           <hr />
           <Link to="/">Fazer login</Link>
         </Form>

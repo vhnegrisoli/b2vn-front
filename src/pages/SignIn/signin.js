@@ -35,21 +35,19 @@ class SignIn extends Component {
       this.setState({ error: "Preencha e-mail e senha para continuar!" });
     } else {
       try {
-        const response = await axios.post("http://192.168.1.207:8080/oauth/token", createLoginFormData(email, password), {
+        const response = await axios.post("http://192.168.1.105:8080/oauth/token", createLoginFormData(email, password), {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
           }
 
         });
         console.log(response)
-        setToken("asd");
-        this.props.history.push("/app");
+        setToken(response.access_token);
+        this.props.history.push("/home");
       } catch (err) {
-        setToken("asd");
-        this.props.history.push("/app");
         this.setState({
           error:
-            "Houve um problema com o login, verifique suas credenciais. T.T"
+            "Houve um problema com o login, verifique suas credenciais"
         });
       }
     }
@@ -73,7 +71,7 @@ class SignIn extends Component {
           />
           <button type="submit">Entrar</button>
           <hr />
-          <Link to="/signup">Criar conta grátis</Link>
+          <Link to="/signup">Criar conta</Link>
         </Form>
       </Container>
     );
