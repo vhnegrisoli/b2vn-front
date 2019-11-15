@@ -7,7 +7,6 @@ import PropTypes from "prop-types";
 import Swal from 'sweetalert2'
 import CheckBox from './components/checkbox'
 import api from "../../services/api";
-import { logout } from "../../services/auth";
 
 
 
@@ -96,10 +95,7 @@ class Map extends Component {
     }
   };
 
-  handleLogout = e => {
-    logout();
-    this.props.history.push("/");
-  };
+
 
 
   showMessage(radar) {
@@ -153,7 +149,7 @@ class Map extends Component {
     return (
       <Fragment>
 
-        <NavBar />
+        <NavBar {...this.props} />
         <div>
           {
             this.state.todosLotes.map((lote) => {

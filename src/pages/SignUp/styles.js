@@ -2,20 +2,21 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  float: right;
 `;
+
+
 
 export const Form = styled.form`
   width: 400px;
+  height: 100vh;
   background: #fff;
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   img {
-    width: 100px;
+    height: 12vh;
     margin: 10px 0 40px;
   }
   p {
@@ -34,7 +35,6 @@ export const Form = styled.form`
     color: #777;
     font-size: 15px;
     width: 100%;
-    border: 1px solid #ddd;
     &::placeholder {
       color: #999;
     }
@@ -42,7 +42,7 @@ export const Form = styled.form`
   button {
     color: #fff;
     font-size: 16px;
-    background: #fc6963;
+    background: #f9c32b;
     height: 56px;
     border: 0;
     border-radius: 5px;
@@ -61,3 +61,4 @@ export const Form = styled.form`
     text-decoration: none;
   }
 `;
+

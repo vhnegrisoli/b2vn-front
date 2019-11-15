@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Logo from "../../assets/logo.png";
+import { logout } from "../../services/auth";
 
 class NavBar extends Component {
     state = {
@@ -9,6 +10,11 @@ class NavBar extends Component {
     _onToggleNav = () => {
         this.setState({ navCollapsed: !this.state.navCollapsed })
     }
+
+    handleLogout = e => {
+        logout();
+        this.props.history.push("/");
+    };
 
     render() {
         const { navCollapsed } = this.state
@@ -34,7 +40,7 @@ class NavBar extends Component {
                 >
                     <ul className='nav navbar-nav navbar-right'>
                         <li>
-                            <a>Login</a>
+                            <a><button type="button" onClick={this.handleLogout}>Logout</button></a>
                         </li>
                     </ul>
                 </div>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 
-import Logo from "../../assets/logo.svg";
+import Logo from "../../assets/logo.png";
 
 import api from "../../services/api";
 
@@ -34,7 +34,9 @@ class SignUp extends Component {
 
   render() {
     return (
+
       <Container>
+
         <Form onSubmit={this.handleSignUp}>
           <img src={Logo} alt="logo" />
           {this.state.error && <p>{this.state.error}</p>}
