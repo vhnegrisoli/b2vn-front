@@ -2,10 +2,9 @@ import styled from "styled-components";
 import { darken } from "polished";
 
 export const Container = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  padding-left: 5%;
+  padding-right: 5%;
+  height: 100%;
 `;
 
 export const ButtonContainer = styled.div`

@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import Swal from 'sweetalert2'
 import CheckBox from './components/checkbox'
 import api from "../../services/api";
+import { withGlobalState } from 'react-globally'
 
 
 
@@ -184,7 +185,7 @@ class Map extends Component {
   }
 }
 
-const DimensionedMap = withRouter(Dimensions()(Map));
+const DimensionedMap = withGlobalState(withRouter(Dimensions()(Map)));
 const Mapa = () => (
   <Container>
     <DimensionedMap />

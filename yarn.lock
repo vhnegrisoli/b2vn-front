@@ -6663,7 +6663,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.7, prop-types@^15.6.1, prop-types@^15.6.2:
+prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.7, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -6888,6 +6888,13 @@ react-error-overlay@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-4.0.1.tgz#417addb0814a90f3a7082eacba7cee588d00da89"
   integrity sha512-xXUbDAZkU08aAkjtUvldqbvI04ogv+a1XdHxvYuHPYKIVk/42BIOD0zSKTHAWV4+gDy3yGm283z2072rA2gdtw==
+
+react-globally@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-globally/-/react-globally-1.1.0.tgz#637204b25a782d9f3e1a68087e3115e6b9e3eabf"
+  integrity sha512-m3etqejT+/MMiKs4JERUrRjyAkry36zgm9xX7dr1JJhgXQGVoPBQqVml/w7ZsRsIZOU3n93VsoECErZOS0c4YA==
+  dependencies:
+    prop-types "^15.6.0"
 
 react-is@^16.3.1, react-is@^16.8.1:
   version "16.11.0"

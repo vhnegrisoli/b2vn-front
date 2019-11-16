@@ -11,7 +11,6 @@ import Home from "./pages/Home/home";
 import Mapa from "./pages/Mapa/mapa";
 import Logout from "./pages/Logout/logout";
 import GrantAdmin from "./pages/GrantAdmin/grant_admin";
-import Teste from "./pages/PageWrapper/pageContent";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -33,7 +32,6 @@ const Routes = () => (
         <Route path="/signup" component={SignUp} />
         <Route path="/logout" component={Logout} />
         <Route path="/grant-admin" component={GrantAdmin} />
-        <Route path="/teste" component={Teste} />
         <PrivateRoute path="/home" component={Home} />
         <PrivateRoute path="/mapa" component={Mapa} />
         <Route path="*" component={() => <h1>Page not found</h1>} />

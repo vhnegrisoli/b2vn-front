@@ -7,11 +7,13 @@ const api = axios.create({
 
 api.interceptors.request.use(async config => {
   const token = getToken();
-  if (token !== 'undefined') {
+  if (token) {
+    //if (token !== 'undefined') {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
 });
+
 
 
 export default api;

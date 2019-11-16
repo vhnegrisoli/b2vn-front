@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
+import { withGlobalState } from 'react-globally'
 
 
 class NavBar extends Component {
@@ -12,11 +13,8 @@ class NavBar extends Component {
         this.setState({ navCollapsed: !this.state.navCollapsed })
     }
 
-
-
     render() {
         const { navCollapsed } = this.state
-
         return (
             <nav className='navbar navbar-default'>
                 <div className='navbar-header'>
@@ -48,7 +46,9 @@ class NavBar extends Component {
                         </li>
                     </ul>
                     <ul className='nav navbar-nav navbar-right'>
-
+                        <li>
+                            <Link to="/conta">{this.props.globalState.usuario.nome}</Link>
+                        </li>
                         <li>
                             <Link to="/logout">Logout</Link>
                         </li>
@@ -62,4 +62,4 @@ class NavBar extends Component {
 
 
 
-export default NavBar
+export default withGlobalState(NavBar)
