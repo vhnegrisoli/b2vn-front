@@ -5,7 +5,7 @@ import Logo from "../../assets/logo.png";
 import axios from "axios";
 import { setToken } from "../../services/auth";
 
-import { Form, Container } from "./styles";
+import { Form, SplitLeft, Centered, SplitRight } from "./styles";
 
 
 const app_client = 'b2vn-auth-api-client';
@@ -55,25 +55,38 @@ class SignIn extends Component {
 
   render() {
     return (
-      <Container>
-        <Form onSubmit={this.handleSignIn}>
-          <img src={Logo} alt="logo" />
-          {this.state.error && <p>{this.state.error}</p>}
-          <input
-            type="email"
-            placeholder="Endereço de e-mail"
-            onChange={e => this.setState({ email: e.target.value })}
-          />
-          <input
-            type="password"
-            placeholder="Senha"
-            onChange={e => this.setState({ password: e.target.value })}
-          />
-          <button type="submit">Entrar</button>
-          <hr />
-          <Link to="/signup">Criar conta</Link>
-        </Form>
-      </Container>
+      <div>
+
+        <SplitLeft>
+          <Centered>
+            <h3>Para entrar no site utiliza o e-mail e senha!</h3>
+            <h4>Caso ainda não tenha cadastro, crie sua conta já</h4>
+          </Centered>
+        </SplitLeft>
+
+        <SplitRight>
+          <Centered>
+            <Form onSubmit={this.handleSignIn}>
+              <img src={Logo} alt="logo" />
+              {this.state.error && <p>{this.state.error}</p>}
+              <input
+                type="email"
+                placeholder="Endereço de e-mail"
+                onChange={e => this.setState({ email: e.target.value })}
+              />
+              <input
+                type="password"
+                placeholder="Senha"
+                onChange={e => this.setState({ password: e.target.value })}
+              />
+              <button type="submit">Entrar</button>
+              <hr />
+              <Link to="/signup">Criar conta</Link>
+            </Form>
+          </Centered>
+        </SplitRight >
+
+      </div>
     );
   }
 }

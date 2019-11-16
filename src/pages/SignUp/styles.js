@@ -1,15 +1,10 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  display: flex;
-  float: right;
-`;
-
 
 
 export const Form = styled.form`
-  width: 400px;
-  height: 100vh;
+  width: 100%;
+  height: 70vh;
   background: #fff;
   padding: 20px;
   display: flex;
@@ -40,8 +35,8 @@ export const Form = styled.form`
     }
   }
   button {
-    color: #fff;
-    font-size: 16px;
+    color: #41256F;
+    font-size: 20px;
     background: #f9c32b;
     height: 56px;
     border: 0;
@@ -57,8 +52,51 @@ export const Form = styled.form`
   a {
     font-size: 16;
     font-weight: bold;
-    color: #999;
+    color: #259FA8;
     text-decoration: none;
   }
 `;
+
+
+
+
+
+
+export const SplitLeft = styled.div`
+height: 100%;
+width: 70%;
+position: fixed;
+z-index: 1;
+top: 0;
+overflow-x: hidden;
+padding-top: 20px;
+left: 0;
+background-color: #fffff;
+`;
+
+export const SplitRight = styled.div`
+height: 100%;
+width: 30%;
+position: fixed;
+z-index: 1;
+top: 0;
+overflow-x: hidden;
+padding-top: 20px;
+
+right: 0;
+background-color: #ffffff;
+`;
+
+
+
+
+export const Centered = styled.div`
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+text-align: center;
+`;
+
+
 
