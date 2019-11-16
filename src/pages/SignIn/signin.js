@@ -41,8 +41,7 @@ class SignIn extends Component {
           }
 
         });
-        console.log(response)
-        setToken(response.access_token);
+        setToken(response.data.access_token);
         this.props.history.push("/home");
       } catch (err) {
         this.setState({

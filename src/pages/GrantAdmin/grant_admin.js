@@ -1,32 +1,33 @@
 import React, { Component, Fragment } from "react";
 import Dimensions from "react-dimensions";
 import { withRouter } from "react-router-dom";
-import { getToken } from "../../services/auth";
+import api from "../../services/api";
+
+
+
 import { Container } from "./styles";
 import NavBar from "../NavBar/navbar";
 
-const token = getToken();
-class HomePage extends Component {
+class GrantAdminPage extends Component {
 
   render() {
     return (
       <Fragment>
         <NavBar {...this.props} />
         <Container>
-          <h4>Você está logado! Ao chegar nessa tela você já tem seu token</h4>
-          <h1>{token}</h1>
+          IHU AQUI TU TA ADMIN PROS OUTRO
         </Container>
       </Fragment>
     );
   }
 }
 
-const HomePageConst = withRouter(Dimensions()(HomePage));
-const Home = () => (
+const GrantAdminPageConst = withRouter(Dimensions()(GrantAdminPage));
+const GrantAdmin = () => (
   <Fragment>
-    <HomePageConst />
+    <GrantAdminPageConst />
   </Fragment>
 
 );
 
-export default Home;
+export default GrantAdmin;

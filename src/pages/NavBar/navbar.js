@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Logo from "../../assets/logo.png";
-import { logout } from "../../services/auth";
+import { Link } from "react-router-dom";
+
 
 class NavBar extends Component {
     state = {
@@ -11,10 +12,7 @@ class NavBar extends Component {
         this.setState({ navCollapsed: !this.state.navCollapsed })
     }
 
-    handleLogout = e => {
-        logout();
-        this.props.history.push("/");
-    };
+
 
     render() {
         const { navCollapsed } = this.state
@@ -22,7 +20,7 @@ class NavBar extends Component {
         return (
             <nav className='navbar navbar-default'>
                 <div className='navbar-header'>
-                    <a className='navbar-brand' href='/app'><img src={Logo} height={25} alt="logo"></img></a>
+                    <a className='navbar-brand' href='/home'><img src={Logo} height={25} alt="logo"></img></a>
                     <button
                         aria-expanded='false'
                         className='navbar-toggle collapsed'
@@ -38,10 +36,23 @@ class NavBar extends Component {
                 <div
                     className={(navCollapsed ? 'collapse' : '') + ' navbar-collapse'}
                 >
-                    <ul className='nav navbar-nav navbar-right'>
+                    <ul className='nav navbar-nav navbar-left'>
                         <li>
-                            <a><button type="button" onClick={this.handleLogout}>Logout</button></a>
+                            <Link to="/home">Home</Link>
                         </li>
+                        <li>
+                            <Link to="/mapa">Mapa</Link>
+                        </li>
+                        <li>
+                            <Link to="/grant-admin">Tornar Admin</Link>
+                        </li>
+                    </ul>
+                    <ul className='nav navbar-nav navbar-right'>
+
+                        <li>
+                            <Link to="/logout">Logout</Link>
+                        </li>
+
                     </ul>
                 </div>
             </nav>
