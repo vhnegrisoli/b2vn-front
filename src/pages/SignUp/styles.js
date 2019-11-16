@@ -35,9 +35,10 @@ export const Form = styled.form`
     }
   }
   button {
-    color: #41256F;
-    font-size: 20px;
-    background: #f9c32b;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight:bold;
+    background: #ed5176;
     height: 56px;
     border: 0;
     border-radius: 5px;
@@ -97,6 +98,9 @@ left: 50%;
 transform: translate(-50%, -50%);
 text-align: center;
 `;
+
+
+
 
 
 

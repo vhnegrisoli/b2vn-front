@@ -5,9 +5,27 @@ import { getToken } from "../../services/auth";
 import { Container } from "./styles";
 import NavBar from "../NavBar/navbar";
 import { withGlobalState } from 'react-globally'
+import api from "../../services/api";
 
 const token = getToken();
 class HomePage extends Component {
+
+  getUsuarioLogado = async e => {
+    try {
+      const respose = await api.get("api/usuarios/usuario-autenticado");
+      this.props.setGlobalState(prevGlobalState => ({
+        usuario: respose.data
+      }))
+    } catch (err) {
+      console.log(err);
+      this.props.history.push("/logout");
+    }
+  };
+
+  componentDidMount() {
+    if (this.props.globalState.usuario.id === 0)
+      this.getUsuarioLogado();
+  }
 
   render() {
     return (

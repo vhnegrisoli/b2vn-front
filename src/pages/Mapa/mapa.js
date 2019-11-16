@@ -44,16 +44,14 @@ class Map extends Component {
   };
 
   componentDidMount() {
+    if (this.props.globalState.usuario.id === 0)
+      this.getUsuarioLogado();
     this.loadProperties();
   }
 
   getLotes = async () => {
     try {
-      const response = await api.get("http://192.168.1.207:8081/api/radares/concessao", {
-        headers: {
-          Authorization: "Bearer 54ec92d1-2b03-4c87-af21-11821410c423"
-        }
-      });
+      const response = await api.get("8081/api/radares/concessao");
 
       this.setState({ lotes: response.data });
     } catch (err) {
@@ -70,11 +68,7 @@ class Map extends Component {
 
     })
     try {
-      const response = await api.get("http://192.168.1.207:8081/api/radares/localizacoes/mapa/concessoes?lotes=" + array, {
-        headers: {
-          Authorization: "Bearer 54ec92d1-2b03-4c87-af21-11821410c423"
-        }
-      });
+      const response = await api.get("api/radares/localizacoes/mapa/concessoes?lotes=" + array);
 
       this.setState({ markers: response.data });
     } catch (err) {
@@ -84,11 +78,7 @@ class Map extends Component {
 
   loadProperties = async () => {
     try {
-      const response = await api.get("http://192.168.1.207:8081/api/radares/localizacoes/mapa", {
-        headers: {
-          Authorization: "Bearer 54ec92d1-2b03-4c87-af21-11821410c423"
-        }
-      });
+      const response = await api.get("api/radares/localizacoes/mapa");
 
       this.setState({ markers: response.data });
     } catch (err) {
@@ -136,6 +126,17 @@ class Map extends Component {
   }
 
 
+  getUsuarioLogado = async e => {
+    try {
+      const respose = await api.get("api/usuarios/usuario-autenticado");
+      this.props.setGlobalState(prevGlobalState => ({
+        usuario: respose.data
+      }))
+    } catch (err) {
+      console.log(err);
+      this.props.history.push("/logout");
+    }
+  };
 
 
 
@@ -145,6 +146,8 @@ class Map extends Component {
       containerWidth: width,
       containerHeight: height
     } = this.props;
+
+
 
     const { markers } = this.state;
     return (

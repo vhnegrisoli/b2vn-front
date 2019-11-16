@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 
 import Logo from "../../assets/logo.png";
-import Register from "../../assets/register.png";
-import axios from "axios";
 import { setToken } from "../../services/auth";
+import api from "../../services/api";
 
 import { Form, SplitLeft, Centered, SplitRight } from "./styles";
 
@@ -35,7 +34,7 @@ class SignIn extends Component {
       this.setState({ error: "Preencha e-mail e senha para continuar!" });
     } else {
       try {
-        const response = await axios.post("http://192.168.1.105:8080/oauth/token", createLoginFormData(email, password), {
+        const response = await api.post("oauth/token", createLoginFormData(email, password), {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
           }
@@ -56,7 +55,7 @@ class SignIn extends Component {
     return (
       <div align="center">
         <SplitLeft>
-          <img alt="Registe" src={Register} width="60%" height="90%" />
+          <img alt="b2vn" src={Logo} width="100%" />
         </SplitLeft>
 
         <SplitRight>
@@ -76,7 +75,8 @@ class SignIn extends Component {
               />
               <button type="submit">Entrar</button>
               <hr />
-              <Link to="/signup">Criar conta</Link>
+              Ainda não é cadastrado?
+              <Link to="/signup">Crie sua conta</Link>
             </Form>
           </Centered>
         </SplitRight >

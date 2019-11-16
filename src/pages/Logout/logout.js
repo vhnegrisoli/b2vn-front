@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import Dimensions from "react-dimensions";
 import { withRouter } from "react-router-dom";
 import { logout } from "../../services/auth";
-
+import { withGlobalState } from 'react-globally'
 
 
 
@@ -11,6 +11,11 @@ class LogoutPage extends Component {
 
     componentDidMount() {
         logout();
+        this.props.setGlobalState(prevGlobalState => ({
+            usuario: {
+                id: 0
+            }
+        }))
         this.props.history.push("/");
     }
 
@@ -23,7 +28,7 @@ class LogoutPage extends Component {
     }
 }
 
-const LogoutPageConst = withRouter(Dimensions()(LogoutPage));
+const LogoutPageConst = withGlobalState(withRouter(Dimensions()(LogoutPage)));
 const Logout = () => (
     <Fragment>
         <LogoutPageConst />

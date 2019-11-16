@@ -11,8 +11,8 @@ const initialState = {
         "descricao": "string",
         "email": "string",
         "id": 0,
-        "nome": "string",
-        "permissao": "ADMIN",
+        "nome": "Carregando..",
+        "permissao": "GUEST",
         "ultimoAcesso": "2019-11-16T13:07:35.690Z",
         "user": true
     }

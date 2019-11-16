@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 
 import Logo from "../../assets/logo.png";
-
+import Register from "../../assets/register.png";
 import api from "../../services/api";
 
 import { Form, SplitLeft, Centered, SplitRight } from "./styles";
@@ -39,12 +39,7 @@ class SignUp extends Component {
 
         <SplitLeft>
           <Centered>
-            <h3>Para se cadastrar no site siga os seguintes passos:</h3>
-            <h4>1. Primeiro digite seu nome</h4>
-            <h4>2. Segundo cadastre seu CPF</h4>
-            <h4>3. Terçeiro seu endereço de e-mail</h4>
-            <h4>4. Por fim, sua senha!</h4>
-            <h4>E pronto, agora você já tem um cadastro como usuário COMUM</h4>
+            <img alt="Register" src={Register} width="100%" />
           </Centered>
         </SplitLeft>
 

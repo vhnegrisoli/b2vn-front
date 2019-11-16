@@ -41,9 +41,10 @@ class NavBar extends Component {
                         <li>
                             <Link to="/mapa">Mapa</Link>
                         </li>
-                        <li>
+                        {this.props.globalState.usuario.permissao === 'ADMIN' ? <li>
                             <Link to="/grant-admin">Tornar Admin</Link>
-                        </li>
+                        </li> : <div></div>}
+
                     </ul>
                     <ul className='nav navbar-nav navbar-right'>
                         <li>
