@@ -35,8 +35,11 @@ class SignIn extends Component {
     } else {
       try {
         const response = await api.post("oauth/token", createLoginFormData(email, password), {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+          Headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': 'Bearer YjJ2bi1hdXRoLWFwaS1jbGllbnQ='
+
+
           }
 
         });
