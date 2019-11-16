@@ -3,10 +3,6 @@ import Dimensions from "react-dimensions";
 import { withRouter } from "react-router-dom";
 import api from "../../services/api";
 import { withGlobalState } from 'react-globally'
-
-
-
-
 import { Container } from "./styles";
 import NavBar from "../NavBar/navbar";
 

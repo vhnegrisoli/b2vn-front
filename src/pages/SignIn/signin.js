@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 
 import Logo from "../../assets/logo.png";
+import Register from "../../assets/register.png";
 import axios from "axios";
 import { setToken } from "../../services/auth";
 
 import { Form, SplitLeft, Centered, SplitRight } from "./styles";
-
 
 const app_client = 'b2vn-auth-api-client';
 const app_secret = 'b2vn-auth-api-secret';
@@ -54,13 +54,9 @@ class SignIn extends Component {
 
   render() {
     return (
-      <div>
-
+      <div align="center">
         <SplitLeft>
-          <Centered>
-            <h3>Para entrar no site utiliza o e-mail e senha!</h3>
-            <h4>Caso ainda não tenha cadastro, crie sua conta já</h4>
-          </Centered>
+          <img alt="Registe" src={Register} width="60%" height="90%" />
         </SplitLeft>
 
         <SplitRight>
