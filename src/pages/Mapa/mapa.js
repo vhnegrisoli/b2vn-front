@@ -6,6 +6,7 @@ import { Marker } from "react-map-gl";
 import PropTypes from "prop-types";
 import Swal from 'sweetalert2'
 import CheckBox from './components/checkbox'
+import api_radares from "../../services/api_radares";
 import api from "../../services/api";
 import { withGlobalState } from 'react-globally'
 
@@ -51,7 +52,7 @@ class Map extends Component {
 
   getLotes = async () => {
     try {
-      const response = await api.get("8081/api/radares/concessao");
+      const response = await api_radares.get("api/radares/concessao");
 
       this.setState({ lotes: response.data });
     } catch (err) {
@@ -68,7 +69,7 @@ class Map extends Component {
 
     })
     try {
-      const response = await api.get("api/radares/localizacoes/mapa/concessoes?lotes=" + array);
+      const response = await api_radares.get("api/radares/localizacoes/mapa/concessoes?lotes=" + array);
 
       this.setState({ markers: response.data });
     } catch (err) {
@@ -78,7 +79,7 @@ class Map extends Component {
 
   loadProperties = async () => {
     try {
-      const response = await api.get("api/radares/localizacoes/mapa");
+      const response = await api_radares.get("api/radares/localizacoes/mapa");
 
       this.setState({ markers: response.data });
     } catch (err) {

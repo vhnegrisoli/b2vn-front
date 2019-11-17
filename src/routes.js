@@ -11,6 +11,7 @@ import Home from "./pages/Home/home";
 import Mapa from "./pages/Mapa/mapa";
 import Logout from "./pages/Logout/logout";
 import GrantAdmin from "./pages/GrantAdmin/grant_admin";
+import Localizacoes from "./pages/Radares/localizacao";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -34,6 +35,7 @@ const Routes = () => (
         <Route path="/grant-admin" component={GrantAdmin} />
         <PrivateRoute path="/home" component={Home} />
         <PrivateRoute path="/mapa" component={Mapa} />
+        <PrivateRoute path="/radares/localizacao" component={Localizacoes} />
         <Route path="*" component={() => <h1>Page not found</h1>} />
       </Switch>
       <ModalContainer />

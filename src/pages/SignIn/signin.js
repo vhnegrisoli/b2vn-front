@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 
 import Logo from "../../assets/logo.png";
-import { setToken } from "../../services/auth";
+import { setToken, isAuthenticated } from "../../services/auth";
 import api from "../../services/api";
 
 import { Form, SplitLeft, Centered, SplitRight } from "./styles";
@@ -38,10 +38,7 @@ class SignIn extends Component {
           Headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
             'Authorization': 'Bearer YjJ2bi1hdXRoLWFwaS1jbGllbnQ='
-
-
           }
-
         });
         setToken(response.data.access_token);
         this.props.history.push("/home");
@@ -53,6 +50,11 @@ class SignIn extends Component {
       }
     }
   };
+
+  componentDidMount() {
+    if (isAuthenticated())
+      this.props.history.push("/home");
+  }
 
   render() {
     return (
