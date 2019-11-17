@@ -23,16 +23,7 @@ const ColoredLine = ({ color }) => (
     />
 );
 
-const ExportToCSVButton = () => (
-    <button
-        style={{
-            color: 'white',
-            backgroundColor: 'green',
-            borderRadius: '12px',
-            padding: 12
-        }} onClick={() => console.log('export to csv')}
-    >CSV</button>
-);
+
 
 class VelocidadeMediaTrajetoPage extends Component {
     state = {
@@ -66,7 +57,7 @@ class VelocidadeMediaTrajetoPage extends Component {
             const response = await api_radares.get("api/trajetos/velocidades?page=" + page + "&size=10");
             console.log(response.data.totalElements)
             this.setState({
-                data: response.data.content,
+                data: response.data.trajetosVelocidadesMediasResponse.content,
                 totalElements: response.data.totalElements,
                 perPageItemCount: response.data.size,
                 loading: false
@@ -93,7 +84,6 @@ class VelocidadeMediaTrajetoPage extends Component {
                         <h2>
                             Tipos de veículos por radar
                         </h2>
-                        <ExportToCSVButton />
 
                     </HeaderLine>
 

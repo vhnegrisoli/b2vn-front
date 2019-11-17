@@ -81,9 +81,13 @@ class NavBar extends Component {
                         </li>
 
                         <li>
-                            <div style={{ paddingTop: 6, width: 250 }}></div>
+                            <div style={{ paddingTop: 6, width: 225 }}></div>
                             <Dropdown arrowClosed={<span className="arrow-closed" />}
                                 arrowOpen={<span className="arrow-open" />} options={optionTrajetos} onChange={this._onSelectTrajetos} className='myClassName' placeholder="Trajetos" />
+                        </li>
+
+                        <li>
+                            <Link to="/exportacao">Exportação</Link>
                         </li>
 
                     </ul>

@@ -25,16 +25,7 @@ const ColoredLine = ({ color }) => (
     />
 );
 
-const ExportToCSVButton = () => (
-    <button
-        style={{
-            color: 'white',
-            backgroundColor: 'green',
-            borderRadius: '12px',
-            padding: 12
-        }} onClick={() => console.log('export to csv')}
-    >CSV</button>
-);
+
 
 class ConcenssoesPage extends Component {
     state = {
@@ -123,7 +114,6 @@ class ConcenssoesPage extends Component {
                                 arrowOpen={<span className="arrow-open" />} options={this.state.concessoes} onChange={this._onSelectConcessoes} className='myClassName' value={this.state.concessao} placeholder="Concessões" />
 
                         </div>
-                        <ExportToCSVButton />
 
                     </HeaderLine>
 

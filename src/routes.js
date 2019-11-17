@@ -20,6 +20,7 @@ import VelocidadeMediaTrajeto from "./pages/Trajetos/velocidadeMediaTrajetos";
 import Enquadramento from "./pages/Radares/enquadramento";
 import Concessoes from "./pages/Radares/concessoes";
 import Trajetos from "./pages/Trajetos/trajetos";
+import Exportacao from "./pages/Exportacao/exportacao";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -44,6 +45,7 @@ const Routes = () => (
         <PrivateRoute path="/home" component={Home} />
         <PrivateRoute path="/mapa" component={Mapa} />
         <PrivateRoute path="/token" component={Token} />
+        <PrivateRoute path="/exportacao" component={Exportacao} />
         <PrivateRoute path="/radares/localizacao" component={Localizacoes} />
         <PrivateRoute path="/radares/tipoVeiculo" component={TipoVeiculo} />
         <PrivateRoute path="/radares/infracoesRadar" component={InfracoesRadar} />

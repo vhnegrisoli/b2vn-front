@@ -23,16 +23,7 @@ const ColoredLine = ({ color }) => (
     />
 );
 
-const ExportToCSVButton = () => (
-    <button
-        style={{
-            color: 'white',
-            backgroundColor: 'green',
-            borderRadius: '12px',
-            padding: 12
-        }} onClick={() => console.log('export to csv')}
-    >CSV</button>
-);
+
 
 class InfracoesRadarPage extends Component {
     state = {
@@ -92,7 +83,6 @@ class InfracoesRadarPage extends Component {
                         <h2>
                             Infrações totais por radares
                         </h2>
-                        <ExportToCSVButton />
 
                     </HeaderLine>
 
