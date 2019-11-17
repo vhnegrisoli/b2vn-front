@@ -64,9 +64,10 @@ class VelocidadeMediaTrajetoPage extends Component {
     getAllLocalizacao = async (page) => {
         try {
             const response = await api_radares.get("api/trajetos/velocidades?page=" + page + "&size=10");
+            console.log(response.data)
             this.setState({
-                data: response.data.content,
-                totalElements: response.data.totalElements,
+                data: response.data,
+                totalElements: 19,
                 perPageItemCount: response.data.size,
                 loading: false
             });
