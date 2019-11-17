@@ -64,10 +64,10 @@ class VelocidadeMediaTrajetoPage extends Component {
     getAllLocalizacao = async (page) => {
         try {
             const response = await api_radares.get("api/trajetos/velocidades?page=" + page + "&size=10");
-            console.log(response.data)
+            console.log(response.data.totalElements)
             this.setState({
-                data: response.data,
-                totalElements: 19,
+                data: response.data.content,
+                totalElements: response.data.totalElements,
                 perPageItemCount: response.data.size,
                 loading: false
             });
@@ -79,7 +79,7 @@ class VelocidadeMediaTrajetoPage extends Component {
     componentDidMount() {
         if (this.props.globalState.usuario.id === 0)
             this.getUsuarioLogado();
-        this.getAllLocalizacao(1);
+        this.getAllLocalizacao(0);
     }
 
 
@@ -110,25 +110,26 @@ class VelocidadeMediaTrajetoPage extends Component {
                                 accessor: "enderecoOrigem"
                             },
                             {
-                                Header: "Radar (Destino)",
-                                accessor: "radarDestino"
-                            },
-                            {
-                                Header: "Radar (Origem)",
+                                Header: "Primeiro sensor",
                                 accessor: "radarOrigem"
                             },
                             {
-                                Header: "Velocidade (Destino)",
+                                Header: "Segundo sensor",
+                                accessor: "radarDestino"
+                            },
+                            {
+                                Header: "Velocidade Inical",
+                                accessor: "velocidadeOrigem"
+                            },
+                            {
+                                Header: "Velocidade Final",
                                 accessor: "velocidadeDestino"
                             },
                             {
-                                Header: "Velocidade (Médio)",
+                                Header: "Velocidade Média",
                                 accessor: "velocidadeMedia"
                             },
-                            {
-                                Header: "Velocidade (Origem)",
-                                accessor: "velocidadeOrigem"
-                            }
+
                         ]}
                         defaultPageSize={10}
                         pages={parseInt(this.state.totalElements / 10, 10) + 1}

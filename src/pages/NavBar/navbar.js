@@ -27,13 +27,14 @@ class NavBar extends Component {
         const optionsRadares = [
             { value: 'localizacao', label: 'Localização' },
             { value: 'enquadramento', label: 'Enquadramento' },
-            { value: 'concessao', label: 'Concessão' },
+            { value: 'concessoes', label: 'Concessão' },
             { value: 'tipoVeiculo', label: 'Tipo de Veículo' },
             { value: 'infracoesRadar', label: 'Infrações' },
             { value: 'acuracia', label: 'Acurácia' }
         ]
         const optionTrajetos = [
-            { value: 'velocidadeMedia', label: 'Velocidade Média por Trajedo' }
+            { value: 'velocidadeMedia', label: 'Velocidade Média por Trajeto' },
+            { value: 'trajetos', label: 'Trajetos' }
 
         ]
 
@@ -65,12 +66,12 @@ class NavBar extends Component {
                             <Link to="/mapa">Mapa</Link>
                         </li>
                         <li>
-                            <Link to="/token">Token</Link>
+                            <Link to="/token">Token de acesso</Link>
                         </li>
 
 
                         <li>
-                            <div style={{ paddingTop: 6 }}></div>
+                            <div style={{ paddingTop: 6, width: 150 }}></div>
                             <Dropdown arrowClosed={<span className="arrow-closed" />}
                                 arrowOpen={<span className="arrow-open" />} options={optionsRadares} onChange={this._onSelectRadares} className='myClassName' placeholder="Radares" />
                         </li>
@@ -80,7 +81,7 @@ class NavBar extends Component {
                         </li>
 
                         <li>
-                            <div style={{ paddingTop: 6 }}></div>
+                            <div style={{ paddingTop: 6, width: 250 }}></div>
                             <Dropdown arrowClosed={<span className="arrow-closed" />}
                                 arrowOpen={<span className="arrow-open" />} options={optionTrajetos} onChange={this._onSelectTrajetos} className='myClassName' placeholder="Trajetos" />
                         </li>
@@ -88,7 +89,7 @@ class NavBar extends Component {
                     </ul>
                     <ul className='nav navbar-nav navbar-right'>
                         {this.props.globalState.usuario.permissao === 'ADMIN' ? <li>
-                            <Link to="/grant-admin">Tornar Admin</Link>
+                            <Link to="/grant-admin">Manutenção de usuários</Link>
                         </li> : <div></div>}
                         {this.props.globalState.usuario.permissao === 'ADMIN' ? <li>
                             <a>{this.props.globalState.usuario.descricao}</a>

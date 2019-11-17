@@ -34,7 +34,7 @@ const ExportToCSVButton = () => (
     >CSV</button>
 );
 
-class LocalizacoesPage extends Component {
+class TrajetosPage extends Component {
     state = {
         data: [],
         totalElements: 0,
@@ -63,13 +63,25 @@ class LocalizacoesPage extends Component {
 
     getAllLocalizacao = async (page) => {
         try {
-            const response = await api_radares.get("api/radares/buscar-todos?page=" + page + "&size=10");
+            const response = await api_radares.get("api/trajetos?page=" + page + "&size=10");
             this.setState({
-                data: response.data.content,
+                data: response.data.trajetosResponse.content,
                 totalElements: response.data.totalElements,
                 perPageItemCount: response.data.size,
                 loading: false
             });
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    getDistanceFromTrajeto = async (id) => {
+        try {
+            const response = await api_radares.get("api/trajetos/" + id + "/distancia");
+            Swal.fire({
+                icon: 'info',
+                title: 'Distância entre os radares: ' + response.data.distancia + 'm'
+            })
         } catch (err) {
             console.log(err);
         }
@@ -90,7 +102,7 @@ class LocalizacoesPage extends Component {
                 <Container>
                     <HeaderLine>
                         <h2>
-                            Localização dos radares
+                            Trajetos
                         </h2>
                         <ExportToCSVButton />
 
@@ -101,20 +113,21 @@ class LocalizacoesPage extends Component {
                         data={this.state.data}
                         columns={[
                             {
-                                Header: "Código",
-                                accessor: "codigo"
+                                Header: "Origem",
+                                accessor: "radarOrigem.endereco"
                             },
                             {
-                                Header: "Endereço",
-                                accessor: "endereco"
+                                Header: "Destino",
+                                accessor: "radarDestino.endereco"
+                            },
+
+                            {
+                                Header: "Velocidade incial",
+                                accessor: "trajetoCompleto.v0"
                             },
                             {
-                                Header: "Referência",
-                                accessor: "referencia"
-                            },
-                            {
-                                Header: "Lat/Long",
-                                accessor: "latitudeL"
+                                Header: "Velocidade final",
+                                accessor: "trajetoCompleto.v1"
                             }
                         ]}
                         defaultPageSize={10}
@@ -133,10 +146,22 @@ class LocalizacoesPage extends Component {
                         ofText='de'
                         rowsText='linhas'
                         manual
+                        getTdProps={(state, rowInfo, column, instance) => {
+                            return {
+                                onClick: (e, handleOriginal) => {
+                                    console.log('It was in this row:', rowInfo.row._original.trajetoCompleto.id)
+                                    this.getDistanceFromTrajeto(rowInfo.row._original.trajetoCompleto.id)
+
+
+                                    if (handleOriginal) {
+                                        handleOriginal()
+                                    }
+                                }
+                            }
+                        }}
                         onPageChange={(pageIndex) => {
                             this.setState({ loading: true });
                             this.getAllLocalizacao(pageIndex)
-                            console.log(pageIndex)
                         }}
 
                     />
@@ -147,12 +172,12 @@ class LocalizacoesPage extends Component {
     }
 }
 
-const LocalizacoesPageConst = withGlobalState(withRouter(Dimensions()(LocalizacoesPage)));
-const Localizacoes = () => (
+const TrajetosPageConst = withGlobalState(withRouter(Dimensions()(TrajetosPage)));
+const Trajetos = () => (
     <Fragment>
-        <LocalizacoesPageConst />
+        <TrajetosPageConst />
     </Fragment>
 
 );
 
-export default Localizacoes;
+export default Trajetos;

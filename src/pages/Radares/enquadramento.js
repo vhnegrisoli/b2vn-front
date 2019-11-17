@@ -9,6 +9,8 @@ import { Container, HeaderLine } from "./style";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import Swal from 'sweetalert2'
+import Dropdown from 'react-dropdown'
+import 'react-dropdown/style.css'
 
 
 const ColoredLine = ({ color }) => (
@@ -34,11 +36,13 @@ const ExportToCSVButton = () => (
     >CSV</button>
 );
 
-class LocalizacoesPage extends Component {
+class EnquadramentoPage extends Component {
     state = {
         data: [],
         totalElements: 0,
-        loading: false
+        loading: false,
+        enquadramentos: [],
+        enquadramento: ""
     };
 
     getUsuarioLogado = async e => {
@@ -61,11 +65,25 @@ class LocalizacoesPage extends Component {
         }
     };
 
-    getAllLocalizacao = async (page) => {
+    getAllLocalizacao = async (page, enquadramento) => {
         try {
-            const response = await api_radares.get("api/radares/buscar-todos?page=" + page + "&size=10");
+            const response = await api_radares.get("api/radares/enquadramento/" + enquadramento + "?page=" + page + "&size=10");
             this.setState({
                 data: response.data.content,
+                totalElements: response.data.totalElements,
+                perPageItemCount: response.data.size,
+                loading: false
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    getEnquadramentos = async (page) => {
+        try {
+            const response = await api_radares.get("api/radares/enquadramentos");
+            this.setState({
+                enquadramentos: response.data,
                 totalElements: response.data.totalElements,
                 perPageItemCount: response.data.size,
                 loading: false
@@ -78,9 +96,15 @@ class LocalizacoesPage extends Component {
     componentDidMount() {
         if (this.props.globalState.usuario.id === 0)
             this.getUsuarioLogado();
-        this.getAllLocalizacao(0);
+        this.getEnquadramentos();
     }
 
+    _onSelectEnquadramentos = (selected) => {
+        this.setState({
+            enquadramento: selected.value
+        });
+        this.getAllLocalizacao(0, selected.value)
+    }
 
 
     render() {
@@ -90,8 +114,14 @@ class LocalizacoesPage extends Component {
                 <Container>
                     <HeaderLine>
                         <h2>
-                            Localização dos radares
+                            Enquadramentos por radares
                         </h2>
+                        <div style={{ paddingTop: 2 }}>
+                            Escolha um:
+                            <Dropdown arrowClosed={<span className="arrow-closed" />}
+                                arrowOpen={<span className="arrow-open" />} options={this.state.enquadramentos} onChange={this._onSelectEnquadramentos} className='myClassName' value={this.state.enquadramento} placeholder="Enquadramento" />
+
+                        </div>
                         <ExportToCSVButton />
 
                     </HeaderLine>
@@ -105,17 +135,18 @@ class LocalizacoesPage extends Component {
                                 accessor: "codigo"
                             },
                             {
-                                Header: "Endereço",
-                                accessor: "endereco"
+                                Header: "Enquadramento",
+                                accessor: "enquadrame"
                             },
                             {
-                                Header: "Referência",
-                                accessor: "referencia"
+                                Header: "Quantide de Faixas",
+                                accessor: "qtdeFxsF"
                             },
                             {
-                                Header: "Lat/Long",
-                                accessor: "latitudeL"
+                                Header: "Tipo do Equipamento",
+                                accessor: "tipoEquip"
                             }
+
                         ]}
                         defaultPageSize={10}
                         pages={parseInt(this.state.totalElements / 10, 10) + 1}
@@ -135,8 +166,7 @@ class LocalizacoesPage extends Component {
                         manual
                         onPageChange={(pageIndex) => {
                             this.setState({ loading: true });
-                            this.getAllLocalizacao(pageIndex)
-                            console.log(pageIndex)
+                            this.getAllLocalizacao(pageIndex, this.state.enquadramento)
                         }}
 
                     />
@@ -147,12 +177,12 @@ class LocalizacoesPage extends Component {
     }
 }
 
-const LocalizacoesPageConst = withGlobalState(withRouter(Dimensions()(LocalizacoesPage)));
-const Localizacoes = () => (
+const EnquadramentoPageConst = withGlobalState(withRouter(Dimensions()(EnquadramentoPage)));
+const Enquadramento = () => (
     <Fragment>
-        <LocalizacoesPageConst />
+        <EnquadramentoPageConst />
     </Fragment>
 
 );
 
-export default Localizacoes;
+export default Enquadramento;

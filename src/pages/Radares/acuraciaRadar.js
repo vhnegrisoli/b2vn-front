@@ -78,7 +78,7 @@ class AcuraciaRadarPage extends Component {
     componentDidMount() {
         if (this.props.globalState.usuario.id === 0)
             this.getUsuarioLogado();
-        this.getAllLocalizacao(1);
+        this.getAllLocalizacao(0);
     }
 
 

@@ -17,6 +17,9 @@ import InfracoesRadar from "./pages/Radares/infracoesRadar";
 import AcuraciaRadar from "./pages/Radares/acuraciaRadar";
 import Token from "./pages/Token/token";
 import VelocidadeMediaTrajeto from "./pages/Trajetos/velocidadeMediaTrajetos";
+import Enquadramento from "./pages/Radares/enquadramento";
+import Concessoes from "./pages/Radares/concessoes";
+import Trajetos from "./pages/Trajetos/trajetos";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -45,7 +48,11 @@ const Routes = () => (
         <PrivateRoute path="/radares/tipoVeiculo" component={TipoVeiculo} />
         <PrivateRoute path="/radares/infracoesRadar" component={InfracoesRadar} />
         <PrivateRoute path="/radares/acuracia" component={AcuraciaRadar} />
+        <PrivateRoute path="/radares/enquadramento" component={Enquadramento} />
+        <PrivateRoute path="/radares/concessoes" component={Concessoes} />
+
         <PrivateRoute path="/trajetos/velocidadeMedia" component={VelocidadeMediaTrajeto} />
+        <PrivateRoute path="/trajetos/trajetos" component={Trajetos} />
         <Route path="*" component={() => <h1>Page not found</h1>} />
       </Switch>
       <ModalContainer />
