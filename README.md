@@ -53,3 +53,5 @@ Além disso, você precisará ter o `git` e o `npm` disponíveis no seu PATH.
 - [React Map GL](https://uber.github.io/react-map-gl/) é utilizado para visualização do mapa.
 - [React](http://facebook.github.io/react) é usado para a interface do usuário.
 - [axios](https://github.com/axios/axios) é utilizado para o client HTTP.
+- [sweetalert2](https://sweetalert2.github.io/) é utilizado para os alertas e mensagens ao usuário
+- [react-table](https://www.npmjs.com/package/react-table) para a visualizações dos dados nas tabelas
