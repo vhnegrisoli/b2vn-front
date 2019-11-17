@@ -134,8 +134,16 @@ class Map extends Component {
         usuario: respose.data
       }))
     } catch (err) {
-      console.log(err);
-      this.props.history.push("/logout");
+      if (err.response.data.status === 429 || err.response.data.status === 500) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.response.data.message
+        })
+      } else {
+        this.props.history.push("/logout");
+
+      }
     }
   };
 

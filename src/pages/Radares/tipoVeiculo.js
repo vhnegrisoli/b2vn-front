@@ -34,7 +34,7 @@ const ExportToCSVButton = () => (
     >CSV</button>
 );
 
-class LocalizacoesPage extends Component {
+class TipoVeiculoPage extends Component {
     state = {
         data: [],
         totalElements: 0,
@@ -63,7 +63,7 @@ class LocalizacoesPage extends Component {
 
     getAllLocalizacao = async (page) => {
         try {
-            const response = await api_radares.get("api/radares/buscar-todos?page=" + page + "&size=10");
+            const response = await api_radares.get("api/radares/tipo/totais/page?page=" + page + "&size=10");
             this.setState({
                 data: response.data.content,
                 totalElements: response.data.totalElements,
@@ -90,7 +90,7 @@ class LocalizacoesPage extends Component {
                 <Container>
                     <HeaderLine>
                         <h2>
-                            Localização dos radares
+                            Tipos de veículos por radar
                         </h2>
                         <ExportToCSVButton />
 
@@ -102,19 +102,15 @@ class LocalizacoesPage extends Component {
                         columns={[
                             {
                                 Header: "Código",
-                                accessor: "codigo"
+                                accessor: "codigoRadar"
                             },
                             {
-                                Header: "Endereço",
-                                accessor: "endereco"
+                                Header: "Tipo",
+                                accessor: "tipo"
                             },
                             {
-                                Header: "Referência",
-                                accessor: "referencia"
-                            },
-                            {
-                                Header: "Lat/Long",
-                                accessor: "latitudeL"
+                                Header: "Total",
+                                accessor: "total"
                             }
                         ]}
                         defaultPageSize={10}
@@ -147,12 +143,12 @@ class LocalizacoesPage extends Component {
     }
 }
 
-const LocalizacoesPageConst = withGlobalState(withRouter(Dimensions()(LocalizacoesPage)));
-const Localizacoes = () => (
+const TipoVeiculoPageConst = withGlobalState(withRouter(Dimensions()(TipoVeiculoPage)));
+const TipoVeiculo = () => (
     <Fragment>
-        <LocalizacoesPageConst />
+        <TipoVeiculoPageConst />
     </Fragment>
 
 );
 
-export default Localizacoes;
+export default TipoVeiculo;

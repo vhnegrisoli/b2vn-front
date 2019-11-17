@@ -12,6 +12,11 @@ import Mapa from "./pages/Mapa/mapa";
 import Logout from "./pages/Logout/logout";
 import GrantAdmin from "./pages/GrantAdmin/grant_admin";
 import Localizacoes from "./pages/Radares/localizacao";
+import TipoVeiculo from "./pages/Radares/tipoVeiculo";
+import InfracoesRadar from "./pages/Radares/infracoesRadar";
+import AcuraciaRadar from "./pages/Radares/acuraciaRadar";
+import Token from "./pages/Token/token";
+import VelocidadeMediaTrajeto from "./pages/Trajetos/velocidadeMediaTrajetos";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -35,7 +40,12 @@ const Routes = () => (
         <Route path="/grant-admin" component={GrantAdmin} />
         <PrivateRoute path="/home" component={Home} />
         <PrivateRoute path="/mapa" component={Mapa} />
+        <PrivateRoute path="/token" component={Token} />
         <PrivateRoute path="/radares/localizacao" component={Localizacoes} />
+        <PrivateRoute path="/radares/tipoVeiculo" component={TipoVeiculo} />
+        <PrivateRoute path="/radares/infracoesRadar" component={InfracoesRadar} />
+        <PrivateRoute path="/radares/acuracia" component={AcuraciaRadar} />
+        <PrivateRoute path="/trajetos/velocidadeMedia" component={VelocidadeMediaTrajeto} />
         <Route path="*" component={() => <h1>Page not found</h1>} />
       </Switch>
       <ModalContainer />

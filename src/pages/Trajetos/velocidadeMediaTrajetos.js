@@ -34,7 +34,7 @@ const ExportToCSVButton = () => (
     >CSV</button>
 );
 
-class LocalizacoesPage extends Component {
+class VelocidadeMediaTrajetoPage extends Component {
     state = {
         data: [],
         totalElements: 0,
@@ -63,7 +63,7 @@ class LocalizacoesPage extends Component {
 
     getAllLocalizacao = async (page) => {
         try {
-            const response = await api_radares.get("api/radares/buscar-todos?page=" + page + "&size=10");
+            const response = await api_radares.get("api/trajetos/velocidades?page=" + page + "&size=10");
             this.setState({
                 data: response.data.content,
                 totalElements: response.data.totalElements,
@@ -90,7 +90,7 @@ class LocalizacoesPage extends Component {
                 <Container>
                     <HeaderLine>
                         <h2>
-                            Localização dos radares
+                            Tipos de veículos por radar
                         </h2>
                         <ExportToCSVButton />
 
@@ -101,20 +101,32 @@ class LocalizacoesPage extends Component {
                         data={this.state.data}
                         columns={[
                             {
-                                Header: "Código",
-                                accessor: "codigo"
+                                Header: "Endereço (Destino)",
+                                accessor: "enderecoDestino"
                             },
                             {
-                                Header: "Endereço",
-                                accessor: "endereco"
+                                Header: "Endereço (Origem)",
+                                accessor: "enderecoOrigem"
                             },
                             {
-                                Header: "Referência",
-                                accessor: "referencia"
+                                Header: "Radar (Destino)",
+                                accessor: "radarDestino"
                             },
                             {
-                                Header: "Lat/Long",
-                                accessor: "latitudeL"
+                                Header: "Radar (Origem)",
+                                accessor: "radarOrigem"
+                            },
+                            {
+                                Header: "Velocidade (Destino)",
+                                accessor: "velocidadeDestino"
+                            },
+                            {
+                                Header: "Velocidade (Médio)",
+                                accessor: "velocidadeMedia"
+                            },
+                            {
+                                Header: "Velocidade (Origem)",
+                                accessor: "velocidadeOrigem"
                             }
                         ]}
                         defaultPageSize={10}
@@ -136,7 +148,6 @@ class LocalizacoesPage extends Component {
                         onPageChange={(pageIndex) => {
                             this.setState({ loading: true });
                             this.getAllLocalizacao(pageIndex)
-                            console.log(pageIndex)
                         }}
 
                     />
@@ -147,12 +158,12 @@ class LocalizacoesPage extends Component {
     }
 }
 
-const LocalizacoesPageConst = withGlobalState(withRouter(Dimensions()(LocalizacoesPage)));
-const Localizacoes = () => (
+const VelocidadeMediaTrajetoPageConst = withGlobalState(withRouter(Dimensions()(VelocidadeMediaTrajetoPage)));
+const VelocidadeMediaTrajeto = () => (
     <Fragment>
-        <LocalizacoesPageConst />
+        <VelocidadeMediaTrajetoPageConst />
     </Fragment>
 
 );
 
-export default Localizacoes;
+export default VelocidadeMediaTrajeto;

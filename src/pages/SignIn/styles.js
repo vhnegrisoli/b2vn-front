@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export const Form = styled.form`
   width: 100%;
-  height: 50vh;
+  height: 70vh;
   background: #fff;
   padding: 20px;
   display: flex;
@@ -95,6 +95,21 @@ export const Centered = styled.div`
 position: absolute;
 top: 50%;
 left: 50%;
+transform: translate(-50%, -50%);
+text-align: center;
+`;
+
+
+
+
+
+
+
+export const CenteredImage = styled.div`
+position: absolute;
+top: 50%;
+left: 50%;
+width: 90%;
 transform: translate(-50%, -50%);
 text-align: center;
 `;

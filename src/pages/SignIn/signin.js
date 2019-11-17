@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 
 import Logo from "../../assets/logo.png";
+import Background from "../../assets/login-background.png";
 import { setToken, isAuthenticated } from "../../services/auth";
 import api from "../../services/api";
 
-import { Form, SplitLeft, Centered, SplitRight } from "./styles";
+import { Form, SplitLeft, Centered, SplitRight, CenteredImage } from "./styles";
 
 const app_client = 'b2vn-auth-api-client';
 const app_secret = 'b2vn-auth-api-secret';
@@ -60,7 +61,10 @@ class SignIn extends Component {
     return (
       <div align="center">
         <SplitLeft>
-          <img alt="b2vn" src={Logo} width="100%" />
+          <CenteredImage>
+            <img alt="mobilab" src={Background} width="100%" />
+
+          </CenteredImage>
         </SplitLeft>
 
         <SplitRight>

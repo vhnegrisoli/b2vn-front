@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 import { withGlobalState } from 'react-globally'
 import Dropdown from 'react-dropdown'
@@ -15,26 +14,34 @@ class NavBar extends Component {
         this.setState({ navCollapsed: !this.state.navCollapsed })
     }
 
-    _onSelect = (selected) => {
+    _onSelectRadares = (selected) => {
         this.props.history.push('/radares/' + selected.value)
+    }
+
+    _onSelectTrajetos = (selected) => {
+        this.props.history.push('/trajetos/' + selected.value)
     }
 
     render() {
         const { navCollapsed } = this.state
-        const options = [
+        const optionsRadares = [
             { value: 'localizacao', label: 'Localização' },
             { value: 'enquadramento', label: 'Enquadramento' },
-            { value: 'concessao', label: 'Concessão' }
+            { value: 'concessao', label: 'Concessão' },
+            { value: 'tipoVeiculo', label: 'Tipo de Veículo' },
+            { value: 'infracoesRadar', label: 'Infrações' },
+            { value: 'acuracia', label: 'Acurácia' }
+        ]
+        const optionTrajetos = [
+            { value: 'velocidadeMedia', label: 'Velocidade Média por Trajedo' }
+
         ]
 
 
 
         return (
-
             <nav className='navbar navbar-default'>
-
-                <div className='navbar-header'>
-                    <a className='navbar-brand' href='/home'><img src={Logo} height={25} alt="logo"></img></a>
+                <div className='navbar-header' style={{ height: 55 }}>
                     <button
                         aria-expanded='false'
                         className='navbar-toggle collapsed'
@@ -57,19 +64,38 @@ class NavBar extends Component {
                         <li>
                             <Link to="/mapa">Mapa</Link>
                         </li>
-                        {this.props.globalState.usuario.permissao === 'ADMIN' ? <li>
-                            <Link to="/grant-admin">Tornar Admin</Link>
-                        </li> : <div></div>}
+                        <li>
+                            <Link to="/token">Token</Link>
+                        </li>
+
 
                         <li>
+                            <div style={{ paddingTop: 6 }}></div>
                             <Dropdown arrowClosed={<span className="arrow-closed" />}
-                                arrowOpen={<span className="arrow-open" />} options={options} onChange={this._onSelect} className='myClassName' placeholder="Radares" />
+                                arrowOpen={<span className="arrow-open" />} options={optionsRadares} onChange={this._onSelectRadares} className='myClassName' placeholder="Radares" />
+                        </li>
+
+                        <li>
+                            <div style={{ padding: 7 }}> </div>
+                        </li>
+
+                        <li>
+                            <div style={{ paddingTop: 6 }}></div>
+                            <Dropdown arrowClosed={<span className="arrow-closed" />}
+                                arrowOpen={<span className="arrow-open" />} options={optionTrajetos} onChange={this._onSelectTrajetos} className='myClassName' placeholder="Trajetos" />
                         </li>
 
                     </ul>
                     <ul className='nav navbar-nav navbar-right'>
+                        {this.props.globalState.usuario.permissao === 'ADMIN' ? <li>
+                            <Link to="/grant-admin">Tornar Admin</Link>
+                        </li> : <div></div>}
+                        {this.props.globalState.usuario.permissao === 'ADMIN' ? <li>
+                            <a>{this.props.globalState.usuario.descricao}</a>
+                        </li> : <div></div>}
+
                         <li>
-                            <Link to="/conta">{this.props.globalState.usuario.nome}</Link>
+                            <a>{this.props.globalState.usuario.nome}</a>
                         </li>
                         <li>
                             <Link to="/logout">Logout</Link>
@@ -77,7 +103,7 @@ class NavBar extends Component {
 
                     </ul>
                 </div>
-            </nav>
+            </nav >
         )
     }
 }

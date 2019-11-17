@@ -7,11 +7,4 @@ export const Container = styled.div`
 `;
 
 
-export const HeaderLine = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-  padding: 10px 0;
-`;
-
 
