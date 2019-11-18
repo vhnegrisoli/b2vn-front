@@ -2,7 +2,7 @@ import axios from "axios";
 import { getToken } from "./auth";
 
 const api_radares = axios.create({
-    baseURL: "http://192.168.1.105:8081"
+    baseURL: "http://localhost:8081"
 });
 
 api_radares.interceptors.request.use(async config => {
