@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import Dimensions from "react-dimensions";
 import { withRouter } from "react-router-dom";
-import { Container } from "./styles";
 import NavBar from "../NavBar/navbar";
 import { withGlobalState } from 'react-globally'
 import api from "../../services/api";
@@ -101,12 +100,8 @@ class HomePage extends Component {
     return (
       <Fragment>
         <NavBar {...this.props} />
-        <Container>
 
-          <Doughnut width={100}
-            height={25} data={this.state.data} />
-
-        </Container>
+        <Doughnut height={50} data={this.state.data} />
       </Fragment>
     );
   }
