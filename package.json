@@ -17,6 +17,7 @@
     "react-dom": "^16.4.2",
     "react-dropdown": "^1.6.4",
     "react-dropzone": "^5.0.1",
+    "express": "^4.17.1",
     "react-globally": "^1.1.0",
     "react-iframe": "^1.8.0",
     "react-map-gl": "^3.3.4",
