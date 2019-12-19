@@ -1,6 +1,6 @@
-import { injectGlobal } from "styled-components";
+import { injectGlobal } from 'styled-components';
 
-import "font-awesome/css/font-awesome.css";
+import 'font-awesome/css/font-awesome.css';
 
 injectGlobal`
 * {
@@ -10,7 +10,7 @@ injectGlobal`
   outline: 0;
 }
 body, html {
-  background: #eaeaea;
+  background: #FFFF;
   font-family: 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;

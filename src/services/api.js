@@ -1,8 +1,9 @@
-import axios from "axios";
-import { getToken } from "./auth";
+import axios from 'axios';
+import { getToken } from './auth';
+import { BACK_END_AUTH } from '../utils/api';
 
 const api = axios.create({
-  baseURL: "http://localhost:8080"
+  baseURL: BACK_END_AUTH,
 });
 
 api.interceptors.request.use(async config => {
